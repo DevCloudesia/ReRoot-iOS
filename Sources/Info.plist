@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>ReRoot</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fitness</string>
+		<string>fitnessapp</string>
+		<string>apple-health</string>
+		<string>x-apple-health</string>
+	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>ReRoot reads your Heart Rate Variability and sleep data to detect stress signals before cravings escalate — a technique called a Just-In-Time Adaptive Intervention (JITAI).</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>ReRoot does not write any data to Apple Health.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>ReRoot uses your location to find nearby addiction treatment centers and support groups.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>ReRoot uses your location to find nearby addiction treatment centers, counselors, and support groups so you can get help when you need it most.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>ReRoot uses the microphone for voice memo journaling during check-ins. Recordings stay on your device.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>ReRoot uses speech recognition to understand your voice memos during check-ins. All processing stays on your device.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+	</dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>AccentColor</string>
+		<key>UIImageName</key>
+		<string></string>
+	</dict>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+</dict>
+</plist>

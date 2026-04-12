@@ -1,0 +1,10 @@
+build/
+Sources/Services/Secrets.swift
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+.DS_Store
