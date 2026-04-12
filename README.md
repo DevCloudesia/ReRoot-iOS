@@ -20,7 +20,7 @@
 ---
 
 <p align="center">
-  <a href="https://github.com/DevCloudesia/ReRoot-iOS/releases/download/v1.0/Video.MP4">
+  <a href="https://vimeo.com/manage/videos/1182382025">
     <img src="https://img.shields.io/badge/%E2%96%B6%EF%B8%8F%20Watch-Demo%20Video-red?style=for-the-badge" alt="Watch Demo" />
   </a>
 </p>
