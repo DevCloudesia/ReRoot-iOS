@@ -178,17 +178,6 @@ open ReRoot.xcodeproj
 # Hit Cmd+R to build and run
 ```
 
-<details>
-<summary><strong>Or build from the command line</strong></summary>
-
-```bash
-xcodegen generate
-xcodebuild -project ReRoot.xcodeproj -target ReRoot -sdk iphonesimulator -arch arm64 build
-xcrun simctl install booted build/Debug-iphonesimulator/ReRoot.app
-xcrun simctl launch booted com.tryquit.reroot
-```
-</details>
-
 ---
 
 ## Behavioral Science Foundation
@@ -314,15 +303,15 @@ Every fact, milestone, quote, and therapeutic technique in ReRoot is grounded in
 | # | Source | Used For |
 |---|--------|----------|
 | 1 | National Institute on Drug Abuse. (2024). *Tobacco, nicotine, and e-cigarettes research report.* NIH. [Link](https://nida.nih.gov/publications/research-reports/tobacco-nicotine-e-cigarettes) | Withdrawal science, brain chemistry, recovery timelines |
-| 2 | American Lung Association. (2024). *What happens after you quit smoking.* [Link](https://www.lung.org/quit-smoking/i-just-quit/what-happens-after) | Milestones, healing timeline, recovery phases |
+| 2 | American Lung Association. (2024). *Benefits of quitting smoking.* [Link](https://www.lung.org/quit-smoking/i-want-to-quit/benefits-of-quitting) | Milestones, healing timeline, recovery phases |
 | 3 | American Cancer Society. (2024). *Benefits of quitting smoking over time.* [Link](https://www.cancer.org/healthy/stay-away-from-tobacco/benefits-of-quitting-smoking-over-time.html) | Recovery milestones, long-term health statistics |
-| 4 | Harvard Health Publishing. (2021). *Nicotine: It may have a good side.* Harvard Medical School. [Link](https://www.health.harvard.edu/blog/nicotine-it-may-have-a-good-side) | Science stage explanations, anxiety myth-busting |
+| 4 | Harvard Health Publishing. (2021). *Nicotine: It may have a good side.* Harvard Medical School. [Link](https://www.health.harvard.edu/newsletter_article/Nicotine_It_may_have_a_good_side) | Science stage explanations, anxiety myth-busting |
 | 5 | Centers for Disease Control and Prevention. (2024). *Tips from former smokers.* [Link](https://www.cdc.gov/tobacco/campaign/tips/) | Symptom data, craving tips, withdrawal timelines |
 | 6 | National Cancer Institute. (2023). *Cigarette smoking: Health risks and how to quit (PDQ).* NIH. [Link](https://www.cancer.gov/about-cancer/causes-prevention/risk/tobacco/cessation-fact-sheet) | Withdrawal symptoms, appetite changes, mood recovery |
 | 7 | Sissons, B. (2023). *What happens after you quit smoking: A timeline.* Medical News Today. [Link](https://www.medicalnewstoday.com/articles/317956) | Days 2-7 healing milestones, sensory recovery |
 | 8 | U.S. DHHS. (2020). *Smoking cessation: A report of the Surgeon General.* [Link](https://www.hhs.gov/surgeongeneral/reports-and-publications/tobacco/) | 1-year heart disease milestone |
-| 9 | National Institutes of Health. (2024). *Managing withdrawal.* Smokefree.gov. [Link](https://smokefree.gov/challenges-when-quitting/managing-withdrawal) | Insomnia symptom data, sleep recovery tips |
-| 10 | Cleveland Clinic. (2023). *Nicotine withdrawal: Symptoms, timeline, and coping.* [Link](https://my.clevelandclinic.org/health/articles/nicotine-withdrawal) | Difficulty focusing, mood recovery, insomnia |
+| 9 | National Institutes of Health. (2024). *Managing nicotine withdrawal.* Smokefree.gov. [Link](https://smokefree.gov/challenges-when-quitting/withdrawal/managing-nicotine-withdrawal) | Insomnia symptom data, sleep recovery tips |
+| 10 | Cleveland Clinic. (2023). *Nicotine withdrawal: Symptoms, timeline, and coping.* [Link](https://my.clevelandclinic.org/health/diseases/21587-nicotine-withdrawal) | Difficulty focusing, mood recovery, insomnia |
 | 11 | Better Health Channel. (2023). *Smoking — effects on your body.* Victoria, Australia. [Link](https://www.betterhealth.vic.gov.au/health/healthyliving/smoking-effects-on-your-body) | 8-hour CO elimination milestone |
 | 12 | Aylett, E., Small, N., & Bower, P. (2018). Exercise in the treatment of clinical anxiety. *BMC Health Services Research, 18*(1), 559. | Exercise science facts, neural recovery |
 | 13 | Thompson Coon, J. et al. (2011). Physical activity in outdoor natural environments. *Environmental Science & Technology, 45*(5), 1761-1772. | Nature + exercise craving reduction |
@@ -334,10 +323,10 @@ Every fact, milestone, quote, and therapeutic technique in ReRoot is grounded in
 
 | # | Source | Quote / Usage |
 |---|--------|--------------|
-| 1 | Twain, M. — Widely attributed | "The secret of getting ahead is getting started." |
-| 2 | Confucius. (ca. 500 BCE). *The Analects.* | "It does not matter how slowly you go as long as you do not stop." |
-| 3 | Carr, A. (1985). *The Easy Way to Stop Smoking.* Penguin Books. | "Freedom is what you find on the other side of discomfort." / "Quitting smoking is not a sacrifice; it's a liberation." |
-| 4 | Johnson, S. (1751). *The Rambler, No. 134.* | "The chains of habit are too light to be felt until they are too heavy to be broken." |
+| 1 | Commonly attributed to Mark Twain | "The secret of getting ahead is getting started." |
+| 2 | Commonly attributed to Confucius | "It does not matter how slowly you go as long as you do not stop." |
+| 3 | Carr, A. (1985). *The Easy Way to Stop Smoking.* | "Freedom is what you find on the other side of discomfort." / "Quitting smoking is not a sacrifice; it's a liberation." |
+| 4 | Adapted from Johnson, S. (1748). *The Vision of Theodore.* | "The chains of habit are too light to be felt until they are too heavy to be broken." |
 | 5 | Gandhi, M. K. — Widely attributed | Strength and indomitable will in recovery |
 | 6 | Fuller, T. (1732). *Gnomologia.* | "Health is not valued till sickness comes." |
 | 7 | NIDA. (2024). *Drugs, brains, and behavior.* NIH. [Link](https://nida.nih.gov) | "What you're feeling is withdrawal, not weakness." |
@@ -354,7 +343,7 @@ Every fact, milestone, quote, and therapeutic technique in ReRoot is grounded in
 
 | # | Source | Technique |
 |---|--------|-----------|
-| 1 | Weil, A. (2015). *4-7-8 breathing exercise.* Andrew Weil Center for Integrative Medicine. [Link](https://www.drweil.com/health-wellness/body-mind-spirit/stress-anxiety/breathing-exercises-4-7-8-breath/) | 4-7-8 breathing pacer |
+| 1 | Weil, A. (2015). *Three breathing exercises.* Andrew Weil Center for Integrative Medicine. [Link](https://www.drweil.com/health-wellness/body-mind-spirit/stress-anxiety/three-breathing-exercises-and-techniques/) | 4-7-8 breathing pacer |
 | 2 | Divine, M. (2014). *The Way of the SEAL.* Reader's Digest Association. | Box breathing (4-4-4-4) |
 | 3 | Bowen, S., Chawla, N., & Marlatt, G. A. (2011). *Mindfulness-Based Relapse Prevention.* Guilford Press. | Urge surfing guided activity |
 | 4 | Bourne, E. J. (2020). *The Anxiety and Phobia Workbook* (7th ed.). New Harbinger Publications. | 5-4-3-2-1 sensory grounding |
@@ -380,6 +369,12 @@ Every fact, milestone, quote, and therapeutic technique in ReRoot is grounded in
 </details>
 
 > **Disclaimer:** ReRoot is not a substitute for professional medical advice. If you experience severe withdrawal symptoms, please contact your healthcare provider or one of the crisis resources listed above.
+
+<p align="center">
+  <a href="https://github.com/DevCloudesia/ReRoot-iOS">
+    <img src="https://img.shields.io/badge/View%20Source%20Code-GitHub-black?style=for-the-badge&logo=github" alt="View Source" />
+  </a>
+</p>
 
 ---
 

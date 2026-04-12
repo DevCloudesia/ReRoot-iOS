@@ -231,7 +231,7 @@ extension SourcesView {
             name: "American Lung Association. (2024). What happens after you quit smoking. American Lung Association.",
             detail: "Data on lung recovery timelines: CO elimination at 24 h, cilia regrowth at 1 month, lung function improvement at 3 months.",
             usedFor: "Milestones, healing timeline, \"Right Now\" recovery phases",
-            url: "https://www.lung.org/quit-smoking/i-just-quit/what-happens-after"
+            url: "https://www.lung.org/quit-smoking/i-want-to-quit/benefits-of-quitting"
         ),
         SourceItem(
             name: "American Cancer Society. (2024). Benefits of quitting smoking over time. American Cancer Society.",
@@ -243,7 +243,7 @@ extension SourcesView {
             name: "Harvard Health Publishing. (2021). Nicotine: It may have a good side. Harvard Medical School.",
             detail: "Former smokers report lower anxiety than active smokers; cigarettes relieve withdrawal-induced anxiety rather than real anxiety.",
             usedFor: "Science stage explanations, anxiety myth-busting, exercise benefits",
-            url: "https://www.health.harvard.edu/blog/nicotine-it-may-have-a-good-side"
+            url: "https://www.health.harvard.edu/newsletter_article/Nicotine_It_may_have_a_good_side"
         ),
         SourceItem(
             name: "Centers for Disease Control and Prevention. (2024). Tips from former smokers. U.S. Department of Health and Human Services.",
@@ -273,13 +273,13 @@ extension SourcesView {
             name: "National Institutes of Health. (2024). Managing withdrawal. Smokefree.gov.",
             detail: "Insomnia during withdrawal, sleep architecture disruption by nicotine, and circadian rhythm recovery.",
             usedFor: "Insomnia symptom data, sleep recovery tips",
-            url: "https://smokefree.gov/challenges-when-quitting/managing-withdrawal"
+            url: "https://smokefree.gov/challenges-when-quitting/withdrawal/managing-nicotine-withdrawal"
         ),
         SourceItem(
             name: "Cleveland Clinic. (2023). Nicotine withdrawal: Symptoms, timeline, and coping. Cleveland Clinic.",
             detail: "Cognitive effects of nicotine withdrawal, brain fog duration, and acetylcholine system recovery.",
             usedFor: "Difficulty focusing symptom, mood recovery, insomnia data",
-            url: "https://my.clevelandclinic.org/health/articles/nicotine-withdrawal"
+            url: "https://my.clevelandclinic.org/health/diseases/21587-nicotine-withdrawal"
         ),
         SourceItem(
             name: "Better Health Channel. (2023). Smoking — effects on your body. Department of Health, Victoria, Australia.",
@@ -303,25 +303,25 @@ extension SourcesView {
 
     var quoteSources: [SourceItem] {[
         SourceItem(
-            name: "Twain, M. (n.d.). The secret of getting ahead is getting started. Widely attributed.",
+            name: "\"The secret of getting ahead is getting started.\" Commonly attributed to Mark Twain.",
             detail: "Used for general encouragement during recovery.",
             usedFor: "Daily motivational quote",
             url: nil
         ),
         SourceItem(
-            name: "Confucius. (ca. 500 BCE). The Analects (Lun Yu).",
+            name: "\"It does not matter how slowly you go as long as you do not stop.\" Commonly attributed to Confucius.",
             detail: "\"It does not matter how slowly you go as long as you do not stop.\" Persistence in recovery.",
             usedFor: "Daily motivational quote",
             url: nil
         ),
         SourceItem(
-            name: "Carr, A. (1985). The easy way to stop smoking. Penguin Books.",
+            name: "Carr, A. (1985). The easy way to stop smoking.",
             detail: "\"Freedom is what you find on the other side of discomfort\" and \"Quitting smoking is not a sacrifice; it's a liberation.\" Cognitive reframing approach to cessation.",
             usedFor: "Daily motivational quotes (2 quotes)",
             url: nil
         ),
         SourceItem(
-            name: "Johnson, S. (1751). The Rambler, No. 134.",
+            name: "Adapted from Johnson, S. (1748). The Vision of Theodore.",
             detail: "\"The chains of habit are too light to be felt until they are too heavy to be broken.\"",
             usedFor: "Daily motivational quote",
             url: nil
@@ -381,7 +381,7 @@ extension SourcesView {
             name: "Weil, A. (2015). 4-7-8 breathing exercise. Andrew Weil Center for Integrative Medicine.",
             detail: "Based on pranayama yoga breathing. Activates the parasympathetic nervous system, reducing heart rate and cortisol.",
             usedFor: "Breathing pacer activity, craving emergency tool",
-            url: "https://www.drweil.com/health-wellness/body-mind-spirit/stress-anxiety/breathing-exercises-4-7-8-breath/"
+            url: "https://www.drweil.com/health-wellness/body-mind-spirit/stress-anxiety/three-breathing-exercises-and-techniques/"
         ),
         SourceItem(
             name: "Divine, M. (2014). The way of the SEAL: Think like an elite warrior to lead and succeed. Reader's Digest Association.",
