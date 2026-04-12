@@ -6,6 +6,25 @@ BY: `try {quit} catch {retreat}`
 
 ---
 
+## Demo
+
+https://github.com/user-attachments/assets/VIDEO_PLACEHOLDER
+
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/stats-dashboard.png" width="200" alt="Stats Dashboard" />
+  <img src="screenshots/health-milestones.png" width="200" alt="Recovery Milestones" />
+  <img src="screenshots/skills-toolkit.png" width="200" alt="Skills Toolkit" />
+  <img src="screenshots/health-fitness.png" width="200" alt="Health & Fitness" />
+</p>
+
+<p align="center">
+  <em>Stats Dashboard &nbsp;·&nbsp; Recovery Milestones &nbsp;·&nbsp; Skills Toolkit &nbsp;·&nbsp; Health & Fitness</em>
+</p>
+
+---
+
 ## What It Does
 
 ReRoot helps people quit smoking through daily guided check-ins, evidence-based therapeutic activities, anonymous AI support chat, and real-time health tracking. Unlike generic wellness apps, every feature is specifically designed around tobacco cessation science.

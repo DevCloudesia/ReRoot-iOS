@@ -56,19 +56,22 @@ final class NearbyHelpLocationManager: NSObject, ObservableObject, CLLocationMan
         }
     }
 
-    private static let radiusMeters: Double = 12_070 // 7.5 miles
+    private static let radiusMeters: Double = 40_234 // 25 miles
 
     private let searchQueries = [
-        "addiction treatment",
-        "substance abuse",
-        "behavioral health",
-        "mental health counseling",
-        "therapy counseling",
+        "addiction treatment center",
+        "behavioral health counseling",
         "rehabilitation center",
-        "community health center",
     ]
 
+    private var lastSearchTime: Date?
+
     func searchNearby(around coord: CLLocationCoordinate2D) async {
+        if let last = lastSearchTime, Date().timeIntervalSince(last) < 90 {
+            return
+        }
+        lastSearchTime = Date()
+
         isSearching = true
         errorMessage = nil
         var allPlaces: [HelpPlace] = []
@@ -79,39 +82,31 @@ final class NearbyHelpLocationManager: NSObject, ObservableObject, CLLocationMan
             longitudinalMeters: Self.radiusMeters * 2
         )
 
-        await withTaskGroup(of: [HelpPlace].self) { group in
-            for query in searchQueries {
-                group.addTask {
-                    let request = MKLocalSearch.Request()
-                    request.naturalLanguageQuery = query
-                    request.region = region
-                    do {
-                        let search = MKLocalSearch(request: request)
-                        let response = try await search.start()
-                        return response.mapItems.map { item in
-                            let placeLoc = CLLocation(latitude: item.placemark.coordinate.latitude, longitude: item.placemark.coordinate.longitude)
-                            return HelpPlace(
-                                name: item.name ?? "Support Center",
-                                address: self.formatAddress(item.placemark),
-                                coordinate: item.placemark.coordinate,
-                                distance: userLoc.distance(from: placeLoc),
-                                phone: item.phoneNumber,
-                                category: query,
-                                mapItem: item
-                            )
-                        }
-                    } catch {
-                        return []
-                    }
-                }
-            }
-            for await batch in group {
-                for place in batch {
+        for query in searchQueries {
+            let request = MKLocalSearch.Request()
+            request.naturalLanguageQuery = query
+            request.region = region
+            do {
+                let search = MKLocalSearch(request: request)
+                let response = try await search.start()
+                for item in response.mapItems {
+                    let placeLoc = CLLocation(latitude: item.placemark.coordinate.latitude, longitude: item.placemark.coordinate.longitude)
+                    let place = HelpPlace(
+                        name: item.name ?? "Support Center",
+                        address: formatAddress(item.placemark),
+                        coordinate: item.placemark.coordinate,
+                        distance: userLoc.distance(from: placeLoc),
+                        phone: item.phoneNumber,
+                        category: query,
+                        mapItem: item
+                    )
                     if place.distance <= Self.radiusMeters,
                        !allPlaces.contains(where: { $0.name == place.name && abs($0.coordinate.latitude - place.coordinate.latitude) < 0.0001 }) {
                         allPlaces.append(place)
                     }
                 }
+            } catch {
+                continue
             }
         }
 
@@ -125,7 +120,7 @@ final class NearbyHelpLocationManager: NSObject, ObservableObject, CLLocationMan
         }
 
         if allPlaces.isEmpty {
-            errorMessage = "No support centers found within 7.5 miles. Try again later or call 1-800-QUIT-NOW for immediate help."
+            errorMessage = "No support centers found within 25 miles. Try again later or call 1-800-QUIT-NOW for immediate help."
         }
     }
 

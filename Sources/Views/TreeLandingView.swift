@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct TreeLandingView: View {
     @EnvironmentObject var state: AppState
@@ -165,11 +166,7 @@ struct TreeLandingView: View {
                     .foregroundColor(.rText3)
                 Spacer()
 
-                Button { showNearbyHelp = true } label: {
-                    Image(systemName: "mappin.circle.fill")
-                        .font(.system(size: 26))
-                        .foregroundColor(.rText3.opacity(0.35))
-                }
+                Color.clear.frame(width: 26, height: 26)
             }
             .padding(.horizontal, 20)
 
@@ -238,39 +235,29 @@ struct TreeLandingView: View {
 
     var treeSection: some View {
         let s = animatedGrowth
-        let breatheScale: CGFloat = breathePhase ? 1.015 : 0.985
+        let breatheScale: CGFloat = breathePhase ? 1.012 : 0.988
 
         return ZStack {
             Ellipse()
                 .fill(Color(red: 0.42, green: 0.56, blue: 0.34).opacity(0.10))
-                .frame(width: 160 * s + 40, height: 18)
+                .frame(width: 100 * s + 24, height: 10)
                 .offset(y: 100)
 
-            VStack(spacing: -14 * s) {
-                ZStack {
-                    canopyLayer(w: 110 * s + 40, h: 90 * s + 30, dx: -18 * s, dy: 14 * s,
-                                c: Color(red: 0.22, green: 0.48, blue: 0.26), o: 0.45)
-                    canopyLayer(w: 120 * s + 45, h: 95 * s + 35, dx: 14 * s, dy: 8 * s,
-                                c: Color(red: 0.26, green: 0.53, blue: 0.30), o: 0.50)
-                    canopyLayer(w: 130 * s + 50, h: 105 * s + 38, dx: 0, dy: 0,
-                                c: Color(red: 0.30, green: 0.58, blue: 0.34), o: 0.65)
-                    canopyLayer(w: 90 * s + 30, h: 70 * s + 24, dx: -6 * s, dy: -14 * s,
-                                c: Color(red: 0.36, green: 0.64, blue: 0.38), o: 0.50)
+            evergreenTrunk(scale: s)
+                .offset(y: 82 * s + 28)
 
-                    Ellipse()
-                        .fill(Color.white.opacity(0.08))
-                        .frame(width: 55 * s + 16, height: 36 * s + 10)
-                        .offset(x: -20 * s, y: -22 * s)
+            ZStack {
+                evergreen(scale: s)
 
-                    if s > 0.55 {
-                        blossoms(scale: s)
-                    }
+                if s > 0.55 {
+                    ornaments(scale: s)
                 }
-                .scaleEffect(breatheScale)
-                .animation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true), value: breathePhase)
 
-                trunk(scale: s)
+                starTopper(scale: s)
+                    .offset(y: -80 * s - 20)
             }
+            .scaleEffect(breatheScale)
+            .animation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true), value: breathePhase)
         }
         .frame(height: 260)
         .onAppear {
@@ -280,63 +267,110 @@ struct TreeLandingView: View {
         }
     }
 
-    func canopyLayer(w: CGFloat, h: CGFloat, dx: CGFloat, dy: CGFloat, c: Color, o: Double) -> some View {
-        Ellipse()
-            .fill(c.opacity(o))
-            .frame(width: max(w, 0), height: max(h, 0))
-            .offset(x: dx, y: dy)
+    func evergreen(scale s: CGFloat) -> some View {
+        let tiers: [(width: CGFloat, height: CGFloat, yOffset: CGFloat, color: Color)] = [
+            (60 * s + 24,  50 * s + 16, -55 * s - 10, Color(red: 0.20, green: 0.52, blue: 0.28)),
+            (90 * s + 34,  50 * s + 18, -22 * s - 4,  Color(red: 0.24, green: 0.56, blue: 0.30)),
+            (120 * s + 44, 55 * s + 20, 14 * s + 6,   Color(red: 0.28, green: 0.60, blue: 0.32)),
+            (148 * s + 52, 58 * s + 22, 50 * s + 14,  Color(red: 0.22, green: 0.54, blue: 0.28)),
+        ]
+
+        return ZStack {
+            ForEach(0..<tiers.count, id: \.self) { i in
+                EvergreenTier()
+                    .fill(
+                        LinearGradient(
+                            colors: [tiers[i].color.opacity(0.9), tiers[i].color.opacity(0.7)],
+                            startPoint: .top, endPoint: .bottom
+                        )
+                    )
+                    .frame(width: max(tiers[i].width, 0), height: max(tiers[i].height, 0))
+                    .offset(y: tiers[i].yOffset)
+
+                EvergreenTier()
+                    .fill(Color.white.opacity(0.06))
+                    .frame(width: max(tiers[i].width * 0.55, 0), height: max(tiers[i].height * 0.7, 0))
+                    .offset(x: -tiers[i].width * 0.1, y: tiers[i].yOffset - 2)
+            }
+        }
     }
 
-    func trunk(scale s: CGFloat) -> some View {
-        RoundedRectangle(cornerRadius: 6)
+    func starTopper(scale s: CGFloat) -> some View {
+        Image(systemName: "star.fill")
+            .font(.system(size: 16 + 6 * s))
+            .foregroundStyle(
+                LinearGradient(
+                    colors: [
+                        Color(red: 1.0, green: 0.88, blue: 0.30),
+                        Color(red: 0.96, green: 0.72, blue: 0.20)
+                    ],
+                    startPoint: .top, endPoint: .bottom
+                )
+            )
+            .shadow(color: Color(red: 1.0, green: 0.88, blue: 0.30).opacity(0.5), radius: 6, y: 0)
+    }
+
+    func evergreenTrunk(scale s: CGFloat) -> some View {
+        RoundedRectangle(cornerRadius: 3)
             .fill(
                 LinearGradient(
                     colors: [
-                        Color(red: 0.52, green: 0.38, blue: 0.24),
-                        Color(red: 0.42, green: 0.30, blue: 0.18),
-                        Color(red: 0.38, green: 0.26, blue: 0.16),
+                        Color(red: 0.50, green: 0.36, blue: 0.22),
+                        Color(red: 0.40, green: 0.28, blue: 0.16),
                     ],
                     startPoint: .leading, endPoint: .trailing
                 )
             )
-            .frame(width: 14 * s + 10, height: 40 * s + 30)
+            .frame(width: 10 * s + 6, height: 16 * s + 8)
             .overlay(
-                RoundedRectangle(cornerRadius: 6)
+                RoundedRectangle(cornerRadius: 3)
                     .fill(Color.black.opacity(0.06))
-                    .frame(width: 3)
-                    .offset(x: 2 * s)
+                    .frame(width: 2)
+                    .offset(x: 1.5 * s)
             )
     }
 
-    func blossoms(scale s: CGFloat) -> some View {
+    func ornaments(scale s: CGFloat) -> some View {
         let colors: [Color] = [
-            Color(red: 0.94, green: 0.82, blue: 0.88),
-            Color(red: 0.96, green: 0.90, blue: 0.68),
-            Color(red: 0.88, green: 0.94, blue: 0.76),
-            Color(red: 0.84, green: 0.72, blue: 0.80),
-            Color(red: 0.76, green: 0.90, blue: 0.84),
-            Color(red: 0.95, green: 0.84, blue: 0.74),
-            Color(red: 0.90, green: 0.86, blue: 0.94),
-            Color(red: 0.82, green: 0.94, blue: 0.88),
+            Color(red: 0.90, green: 0.22, blue: 0.22),
+            Color(red: 1.0, green: 0.78, blue: 0.18),
+            Color(red: 0.20, green: 0.56, blue: 0.90),
+            Color(red: 0.90, green: 0.22, blue: 0.22),
+            Color(red: 1.0, green: 0.78, blue: 0.18),
+            Color(red: 0.20, green: 0.56, blue: 0.90),
+            Color(red: 0.90, green: 0.44, blue: 0.16),
+            Color(red: 0.68, green: 0.18, blue: 0.62),
+            Color(red: 0.16, green: 0.72, blue: 0.52),
+            Color(red: 0.90, green: 0.22, blue: 0.22),
         ]
         let positions: [(CGFloat, CGFloat)] = [
-            (-36, -26), (40, -12), (-18, 18), (28, 24),
-            (0, -38), (-42, 8), (16, -30), (-30, -6)
+            (-14, -46), (16, -38),
+            (-26, -14), (8, -10), (30, -16),
+            (-36, 18),  (0, 22),  (38, 14),
+            (-48, 48),  (20, 52),
         ]
-        let count = min(positions.count, Int((s - 0.55) / 0.05) + 2)
+        let count = min(positions.count, Int((s - 0.55) / 0.04) + 3)
 
-        return ForEach(0..<count, id: \.self) { i in
-            blossomDot(i: i, scale: s, colors: colors, positions: positions)
+        return ZStack {
+            ForEach(0..<count, id: \.self) { i in
+                ornamentDot(i: i, scale: s, colors: colors, positions: positions)
+            }
         }
     }
 
-    private func blossomDot(i: Int, scale s: CGFloat, colors: [Color], positions: [(CGFloat, CGFloat)]) -> some View {
+    private func ornamentDot(i: Int, scale s: CGFloat, colors: [Color], positions: [(CGFloat, CGFloat)]) -> some View {
         let size: CGFloat = 6 + CGFloat(i % 3) * 1.5
         let pos = positions[i]
         let c = colors[i % colors.count]
         return Circle()
-            .fill(c.opacity(0.75))
+            .fill(
+                RadialGradient(
+                    colors: [c.opacity(0.95), c.opacity(0.6)],
+                    center: .topLeading, startRadius: 0, endRadius: size
+                )
+            )
             .frame(width: size, height: size)
+            .shadow(color: c.opacity(0.3), radius: 2, y: 1)
             .offset(x: pos.0 * s, y: pos.1 * s)
             .opacity(min(Double(s - 0.55) * 3.0, 1.0))
     }
@@ -391,10 +425,45 @@ struct TreeLandingView: View {
     // MARK: - Bottom Bar
 
     var bottomBar: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 10) {
             if let lastSkill = yesterdaySkillName {
                 Text("Yesterday you practiced \(lastSkill)")
                     .font(.sansRR(10)).foregroundColor(.rText3)
+            }
+
+            HStack(spacing: 16) {
+                Button {
+                    if let url = URL(string: "tel://18007848669") {
+                        UIApplication.shared.open(url)
+                    }
+                } label: {
+                    HStack(spacing: 5) {
+                        Image(systemName: "phone.fill").font(.system(size: 10))
+                        Text("1-800-QUIT-NOW").font(.sansRR(10, weight: .bold))
+                    }
+                    .foregroundColor(.rAccent)
+                }
+
+                Text("·").foregroundColor(.rText3.opacity(0.4))
+
+                Button {
+                    if let url = URL(string: "tel://988") {
+                        UIApplication.shared.open(url)
+                    }
+                } label: {
+                    HStack(spacing: 5) {
+                        Image(systemName: "heart.fill").font(.system(size: 10))
+                        Text("988 Crisis Line").font(.sansRR(10, weight: .bold))
+                    }
+                    .foregroundColor(Color(red: 0.75, green: 0.30, blue: 0.30))
+                }
+            }
+
+            Button { showNearbyHelp = true } label: {
+                Text("Go to closest place on map")
+                    .font(.sansRR(10, weight: .medium))
+                    .foregroundColor(.rText3.opacity(0.6))
+                    .underline()
             }
         }
     }
@@ -423,21 +492,6 @@ struct TreeLandingView: View {
                     Text(confirmSubtext(idx))
                         .font(.sansRR(13)).foregroundColor(.rText2)
                         .multilineTextAlignment(.center).lineSpacing(3)
-                }
-
-                if idx == 0 {
-                    Button {
-                        withAnimation { showConfirm = false }
-                        showNearbyHelp = true
-                    } label: {
-                        HStack(spacing: 6) {
-                            Image(systemName: "mappin.and.ellipse").font(.system(size: 13, weight: .semibold))
-                            Text("Find support nearby").font(.sansRR(13, weight: .bold))
-                        }
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity).padding(.vertical, 13)
-                        .background(e.color).clipShape(Capsule())
-                    }
                 }
 
                 HStack(spacing: 10) {
@@ -521,5 +575,21 @@ struct TreeLandingView: View {
         let f = DateFormatter()
         f.dateFormat = "EEEE, MMMM d"
         return f.string(from: Date())
+    }
+}
+
+// MARK: - Evergreen Tier Shape
+
+struct EvergreenTier: Shape {
+    func path(in rect: CGRect) -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: rect.midX, y: rect.minY))
+        p.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        p.addQuadCurve(
+            to: CGPoint(x: rect.minX, y: rect.maxY),
+            control: CGPoint(x: rect.midX, y: rect.maxY - rect.height * 0.08)
+        )
+        p.closeSubpath()
+        return p
     }
 }

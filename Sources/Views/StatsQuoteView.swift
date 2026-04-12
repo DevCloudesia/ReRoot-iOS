@@ -99,7 +99,7 @@ struct StatsQuoteView: View {
                     Text("Sources & References")
                         .font(.sansRR(13, weight: .bold))
                         .foregroundColor(.rText)
-                    Text("Scientific, quote, and music citations")
+                    Text("Scientific, quote, and activity citations")
                         .font(.sansRR(10))
                         .foregroundColor(.rText3)
                 }
