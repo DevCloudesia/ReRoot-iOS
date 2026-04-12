@@ -8,7 +8,7 @@ BY: `try {quit} catch {retreat}`
 
 ## Demo
 
-https://github.com/user-attachments/assets/VIDEO_PLACEHOLDER
+[**Watch the full demo video**](https://github.com/DevCloudesia/ReRoot-iOS/releases/download/v1.0/Video.MP4)
 
 ## Screenshots
 
