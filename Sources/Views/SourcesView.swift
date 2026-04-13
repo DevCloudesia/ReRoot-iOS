@@ -274,13 +274,13 @@ extension SourcesView {
             name: "American Cancer Society. (2024). Benefits of quitting smoking over time. American Cancer Society.",
             detail: "Long-term health milestones: stroke risk normalization at 5 years, lung cancer risk halving at 10 years.",
             usedFor: "Recovery milestones, long-term health statistics",
-            url: "https://www.cancer.org/healthy/stay-away-from-tobacco/benefits-of-quitting-smoking-over-time.html"
+            url: "https://www.cancer.org/cancer/risk-prevention/tobacco/guide-quitting-smoking/benefits-of-quitting-smoking-over-time.html"
         ),
         SourceItem(
-            name: "Harvard Health Publishing. (2021). Nicotine: It may have a good side. Harvard Medical School.",
+            name: "Harvard Health Publishing. (2020). Puffing away sadness. Harvard Medical School.",
             detail: "Former smokers report lower anxiety than active smokers; cigarettes relieve withdrawal-induced anxiety rather than real anxiety.",
             usedFor: "Science stage explanations, anxiety myth-busting, exercise benefits",
-            url: "https://www.health.harvard.edu/newsletter_article/Nicotine_It_may_have_a_good_side"
+            url: "https://www.health.harvard.edu/blog/puffing-away-sadness-2020022418913"
         ),
         SourceItem(
             name: "Centers for Disease Control and Prevention. (2024). Tips from former smokers. U.S. Department of Health and Human Services.",

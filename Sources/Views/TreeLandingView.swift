@@ -246,19 +246,17 @@ struct TreeLandingView: View {
             evergreenTrunk(scale: s)
                 .offset(y: 82 * s + 28)
 
-            ZStack {
-                evergreen(scale: s)
+            evergreen(scale: s)
 
-                if s > 0.55 {
-                    ornaments(scale: s)
-                }
-
-                starTopper(scale: s)
-                    .offset(y: -80 * s - 20)
+            if s > 0.55 {
+                ornaments(scale: s)
             }
-            .scaleEffect(breatheScale, anchor: .bottom)
-            .animation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true), value: breathePhase)
+
+            starTopper(scale: s)
+                .offset(y: -80 * s - 20)
         }
+        .scaleEffect(breatheScale)
+        .animation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true), value: breathePhase)
         .frame(height: 260)
         .onAppear {
             withAnimation(.easeOut(duration: 1.6)) {

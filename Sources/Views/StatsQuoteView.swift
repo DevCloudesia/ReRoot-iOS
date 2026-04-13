@@ -353,8 +353,10 @@ struct StatsQuoteView: View {
                 Text(ms.title).font(.sansRR(14, weight: .semibold)).foregroundColor(.rText)
                 Text(ms.body).font(.sansRR(11)).foregroundColor(.rText2).lineSpacing(2)
             }
+            Spacer(minLength: 0)
         }
         .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.white.opacity(0.78))
         .clipShape(RoundedRectangle(cornerRadius: 14))
         .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.rBg2.opacity(0.8), lineWidth: 1))
