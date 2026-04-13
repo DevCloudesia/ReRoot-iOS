@@ -16,6 +16,7 @@ struct TreeLandingView: View {
     @StateObject private var nearbyManager = NearbyHelpLocationManager()
     @State private var appear = false
     @State private var animatedGrowth: CGFloat = 0
+    @State private var showStar = false
     @State private var breathePhase = false
     @State private var bgIndex: Int = {
         let day = Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 0
@@ -252,8 +253,11 @@ struct TreeLandingView: View {
                 ornaments(scale: s)
             }
 
-            starTopper(scale: s)
-                .offset(y: -80 * s - 20)
+            if showStar {
+                starTopper(scale: treeGrowth)
+                    .offset(y: -80 * treeGrowth - 20)
+                    .transition(.opacity.combined(with: .scale(scale: 0.5)))
+            }
         }
         .scaleEffect(breatheScale)
         .animation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true), value: breathePhase)
@@ -261,6 +265,11 @@ struct TreeLandingView: View {
         .onAppear {
             withAnimation(.easeOut(duration: 1.6)) {
                 animatedGrowth = treeGrowth
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {
+                    showStar = true
+                }
             }
         }
     }

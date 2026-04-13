@@ -5,9 +5,21 @@ struct SourcesView: View {
     @State private var expandedSection: String?
 
     var body: some View {
-        NavigationStack {
+        VStack(spacing: 0) {
+            HStack {
+                Text("Sources & References")
+                    .font(.serif(18, weight: .bold))
+                    .foregroundColor(.rText)
+                Spacer()
+                Button("Done") { dismiss() }
+                    .font(.sansRR(15, weight: .semibold))
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 16)
+            .padding(.bottom, 10)
+
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 16) {
+                LazyVStack(spacing: 16) {
                     headerNote
 
                     sourceSection(
@@ -49,18 +61,10 @@ struct SourcesView: View {
                     Color.clear.frame(height: 40)
                 }
                 .padding(.horizontal, 16)
-                .padding(.top, 12)
-            }
-            .background(Color.rBg.ignoresSafeArea())
-            .navigationTitle("Sources & References")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { dismiss() }
-                        .font(.sansRR(15, weight: .semibold))
-                }
+                .padding(.top, 4)
             }
         }
+        .background(Color.rBg.ignoresSafeArea())
     }
 
     // MARK: - Header
