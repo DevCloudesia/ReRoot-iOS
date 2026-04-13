@@ -44,6 +44,8 @@ struct SourcesView: View {
 
                     disclaimerNote
 
+                    githubLink
+
                     Color.clear.frame(height: 40)
                 }
                 .padding(.horizontal, 16)
@@ -103,6 +105,41 @@ struct SourcesView: View {
         .padding(14)
         .background(Color.rBg2.opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - GitHub Link
+
+    var githubLink: some View {
+        Link(destination: URL(string: "https://github.com/DevCloudesia/ReRoot-iOS")!) {
+            HStack(spacing: 10) {
+                Image(systemName: "chevron.left.forwardslash.chevron.right")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.white)
+                    .frame(width: 32, height: 32)
+                    .background(Color.black.opacity(0.85))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("View Source Code")
+                        .font(.sansRR(14, weight: .bold))
+                        .foregroundColor(.rText)
+                    Text("github.com/DevCloudesia/ReRoot-iOS")
+                        .font(.sansRR(10))
+                        .foregroundColor(.rText3)
+                }
+
+                Spacer()
+
+                Image(systemName: "arrow.up.right")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundColor(.rText3.opacity(0.5))
+            }
+            .padding(14)
+            .background(Color.white.opacity(0.78))
+            .clipShape(RoundedRectangle(cornerRadius: 14))
+            .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.black.opacity(0.08), lineWidth: 1))
+            .shadow(color: .black.opacity(0.03), radius: 6, y: 2)
+        }
     }
 
     // MARK: - Section Builder

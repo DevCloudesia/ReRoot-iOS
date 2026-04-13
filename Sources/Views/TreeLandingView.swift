@@ -252,12 +252,12 @@ struct TreeLandingView: View {
                 if s > 0.55 {
                     ornaments(scale: s)
                 }
-            }
-            .scaleEffect(breatheScale)
-            .animation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true), value: breathePhase)
 
-            starTopper(scale: s)
-                .offset(y: -80 * s - 20)
+                starTopper(scale: s)
+                    .offset(y: -80 * s - 20)
+            }
+            .scaleEffect(breatheScale, anchor: .bottom)
+            .animation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true), value: breathePhase)
         }
         .frame(height: 260)
         .onAppear {

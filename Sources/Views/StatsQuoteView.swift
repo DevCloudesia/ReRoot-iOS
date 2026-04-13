@@ -8,7 +8,6 @@ struct StatsQuoteView: View {
     @EnvironmentObject var hkManager: HealthKitManager
 
     @State private var appear = false
-    @State private var showDemoSlider = false
     @State private var showSources = false
     @State private var tick = false
     @State private var showNearbyHelp = false
@@ -60,10 +59,6 @@ struct StatsQuoteView: View {
                 sourcesButton
                     .opacity(appear ? 1 : 0)
                     .animation(.easeOut(duration: 0.5).delay(0.34), value: appear)
-
-                demoSliderCard
-                    .opacity(appear ? 1 : 0)
-                    .animation(.easeOut(duration: 0.5).delay(0.38), value: appear)
 
                 Color.clear.frame(height: 80)
             }
@@ -119,72 +114,10 @@ struct StatsQuoteView: View {
         .buttonStyle(.plain)
     }
 
-    // MARK: - Demo Day Slider
-
-    var demoSliderCard: some View {
-        VStack(spacing: 10) {
-            Button { withAnimation { showDemoSlider.toggle() } } label: {
-                HStack(spacing: 8) {
-                    Image(systemName: "slider.horizontal.3")
-                        .font(.system(size: 14)).foregroundColor(.rPurple)
-                    Text("DEMO: Day Simulator")
-                        .font(.sansRR(11, weight: .bold)).foregroundColor(.rPurple).tracking(0.5)
-                    Spacer()
-                    Image(systemName: showDemoSlider ? "chevron.up" : "chevron.down")
-                        .font(.system(size: 11, weight: .bold)).foregroundColor(.rPurple.opacity(0.5))
-                }
-            }
-
-            if showDemoSlider {
-                VStack(spacing: 8) {
-                    HStack {
-                        Text("Day \(Int(state.demoDayOverride ?? Double(state.dayNum)))")
-                            .font(.serif(20, weight: .bold)).foregroundColor(.rText)
-                        Spacer()
-                        Button {
-                            state.demoDayOverride = nil
-                        } label: {
-                            Text("Reset to live")
-                                .font(.sansRR(11, weight: .bold)).foregroundColor(.rDanger)
-                        }
-                    }
-                    Slider(
-                        value: Binding(
-                            get: { state.demoDayOverride ?? Double(state.dayNum) },
-                            set: { state.demoDayOverride = $0 }
-                        ),
-                        in: 0...365,
-                        step: 0.5
-                    )
-                    .tint(.rPurple)
-
-                    HStack {
-                        Text("Hour 1").font(.sansRR(9)).foregroundColor(.rText3)
-                        Spacer()
-                        Text("6 months").font(.sansRR(9)).foregroundColor(.rText3)
-                        Spacer()
-                        Text("1 year").font(.sansRR(9)).foregroundColor(.rText3)
-                    }
-                }
-                .transition(.opacity.combined(with: .move(edge: .top)))
-            }
-        }
-        .padding(14)
-        .background(Color.rPurple.opacity(0.06))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
-        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.rPurple.opacity(0.15), lineWidth: 1))
-    }
-
     // MARK: - Hero Timer Card
 
     var heroCard: some View {
         VStack(spacing: 6) {
-            if state.demoDayOverride != nil {
-                Text("DEMO MODE")
-                    .font(.sansRR(8, weight: .bold)).foregroundColor(.rDanger).tracking(1.5)
-                    .padding(.horizontal, 8).padding(.vertical, 3)
-                    .background(Color.rDanger.opacity(0.15)).clipShape(Capsule())
-            }
             Text("SMOKE-FREE FOR")
                 .font(.sansRR(9, weight: .bold))
                 .foregroundColor(.white.opacity(0.4)).tracking(2)

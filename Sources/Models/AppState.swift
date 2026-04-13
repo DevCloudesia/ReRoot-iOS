@@ -56,7 +56,6 @@ struct MicroCommitment: Identifiable, Codable {
 class AppState: ObservableObject {
     @Published var quitTime: Date?
     @Published var elapsed: TimeInterval = 0
-    @Published var demoDayOverride: Double? = nil
     @Published var currentMood: Int? = nil
     @Published var moodLog: [MoodEntry] = []
     @Published var cravingLog: [CravingEntry] = []
@@ -120,11 +119,7 @@ class AppState: ObservableObject {
             .autoconnect()
             .sink { [weak self] _ in
                 guard let self, let qt = self.quitTime else { return }
-                if let d = self.demoDayOverride {
-                    self.elapsed = d * 86400
-                } else {
-                    self.elapsed = Date().timeIntervalSince(qt)
-                }
+                self.elapsed = Date().timeIntervalSince(qt)
             }
     }
 
